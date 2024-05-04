@@ -10,8 +10,10 @@
                     <div class="sb-nav-link-icon <?= (current_url(true)->getSegment(2) == 'patient') ? 'text-white' : '' ?>"><i class="fas fa-user-injured"></i></div>
                     Pasien
                 </a>
-
-
+                <a class="nav-link <?= (current_url(true)->getSegment(2) == 'cases') ? 'text-white' : '' ?>" href="/admin/cases">
+                    <div class="sb-nav-link-icon <?= (current_url(true)->getSegment(2) == 'cases') ? 'text-white' : '' ?>"><i class="fas fa-briefcase-medical"></i></div>
+                    Kasus
+                </a>
             </div>
             <div class="sb-sidenav-footer">
                 <div class="small">Logged in as:</div>

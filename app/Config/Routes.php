@@ -20,4 +20,14 @@ $routes->group('admin', ['filter' => 'admin'], function (RouteCollection $routes
         $routes->post('update/(:num)', 'Admin\Patient::update/$1');
         $routes->get('delete/(:num)', 'Admin\Patient::delete/$1');
     });
+
+    // Cases
+    $routes->group('cases', function (RouteCollection $routes) {
+        $routes->get('/', 'Admin\Cases::index');
+        $routes->get('create', 'Admin\Cases::create');
+        $routes->post('store', 'Admin\Cases::store');
+        $routes->get('edit/(:num)', 'Admin\Cases::edit/$1');
+        $routes->post('update/(:num)', 'Admin\Cases::update/$1');
+        $routes->get('delete/(:num)', 'Admin\Cases::delete/$1');
+    });
 });
