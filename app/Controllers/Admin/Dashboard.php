@@ -24,4 +24,11 @@ class Dashboard extends BaseController
             'breadcrumbs' => $breadcrumbs->render()
         ]);
     }
+
+    public function logout()
+    {
+        session()->destroy();
+        session()->setFlashdata('success', 'Anda telah berhasil logout');
+        return redirect()->to('/login');
+    }
 }
