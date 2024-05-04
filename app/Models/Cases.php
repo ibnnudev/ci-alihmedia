@@ -4,21 +4,18 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Patient extends Model
+class Cases extends Model
 {
-    protected $table            = 'patients';
+    protected $table            = 'cases';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'norm',
         'name',
-        'address',
-        'birth_place',
-        'birth_date',
-        'gender'
+        'active_ri',
+        'inactive_ri',
     ];
 
     protected bool $allowEmptyInserts = false;
@@ -50,14 +47,4 @@ class Patient extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
-
-    public function generateNorm(): string
-    {
-        // Generate a unique ID: 0000
-        $lastId = $this->select('norm')->orderBy('norm', 'DESC')->first();
-        $lastId = $lastId ? $lastId['norm'] : 0;
-        $lastId++;
-
-        return str_pad($lastId, 4, '0', STR_PAD_LEFT);
-    }
 }
