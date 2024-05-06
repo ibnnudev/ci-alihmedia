@@ -5,16 +5,16 @@ namespace App\Controllers\Admin;
 use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
 
-class Preservation extends BaseController
+class Culling extends BaseController
 {
-    protected $preservation;
+    protected $culling;
     protected $patient;
     protected $breadcrumb;
 
 
     public function __construct()
     {
-        $this->preservation = new \App\Models\Preservation();
+        $this->culling = new \App\Models\Culling();
         $this->patient = new \App\Models\Patient();
         $this->breadcrumb = new \App\Modules\Breadcrumbs\Breadcrumbs();
     }
@@ -22,13 +22,13 @@ class Preservation extends BaseController
 
     public function index()
     {
-        $preservations = $this->preservation->getAll();
+        $cullings = $this->culling->getAll();
 
         $this->breadcrumb->add('Dashboard', 'admin/dashboard');
-        $this->breadcrumb->add('Pelestarian', 'admin/preservation');
+        $this->breadcrumb->add('Pemusnahan', 'admin/culling');
 
-        return view('admin/preservation/index', [
-            'preservations' => $preservations,
+        return view('admin/culling/index', [
+            'cullings' => $cullings,
             'breadcrumbs' => $this->breadcrumb->render()
         ]);
     }
@@ -36,16 +36,16 @@ class Preservation extends BaseController
     public function create()
     {
         $patients = $this->patient->where('created_at <', date('Y-m-d', strtotime('-5 years')))->findAll();
-        // check if patient already exists in preservation table
+        // check if patient already exists in culling table
         $patients = array_filter($patients, function ($patient) {
-            return !$this->preservation->where('norm', $patient['norm'])->first();
+            return !$this->culling->where('norm', $patient['norm'])->first();
         });
 
         $this->breadcrumb->add('Dashboard', 'admin/dashboard');
-        $this->breadcrumb->add('Pelestarian', 'admin/preservation');
-        $this->breadcrumb->add('Create', 'admin/preservation/create');
+        $this->breadcrumb->add('Pemusnahan', 'admin/culling');
+        $this->breadcrumb->add('Create', 'admin/culling/create');
 
-        return view('admin/preservation/create', [
+        return view('admin/culling/create', [
             'patients' => $patients,
             'breadcrumbs' => $this->breadcrumb->render()
         ]);
@@ -55,23 +55,23 @@ class Preservation extends BaseController
     {
         $data = $this->request->getPost();
 
-        $this->preservation->insert($data);
+        $this->culling->insert($data);
 
         session()->setFlashdata('message', ['success', 'Data berhasil disimpan']);
-        return redirect()->to('/admin/preservation');
+        return redirect()->to('/admin/culling');
     }
 
     public function edit($id)
     {
-        $preservation = $this->preservation->find($id);
+        $culling = $this->culling->find($id);
         $patients = $this->patient->findAll();
 
         $this->breadcrumb->add('Dashboard', 'admin/dashboard');
-        $this->breadcrumb->add('Pelestarian', 'admin/preservation');
-        $this->breadcrumb->add('Edit', 'admin/preservation/edit/' . $id);
+        $this->breadcrumb->add('Pemusnahan', 'admin/culling');
+        $this->breadcrumb->add('Edit', 'admin/culling/edit/' . $id);
 
-        return view('admin/preservation/edit', [
-            'preservation' => $preservation,
+        return view('admin/culling/edit', [
+            'culling' => $culling,
             'patients' => $patients,
             'breadcrumbs' => $this->breadcrumb->render()
         ]);
@@ -81,35 +81,35 @@ class Preservation extends BaseController
     {
         $data = $this->request->getPost();
 
-        $this->preservation->update($id, $data);
+        $this->culling->update($id, $data);
 
         session()->setFlashdata('message', ['success', 'Data berhasil diubah']);
-        return redirect()->to('/admin/preservation');
+        return redirect()->to('/admin/culling');
     }
 
     public function delete($id)
     {
-        $data = $this->preservation->find($id);
+        $data = $this->culling->find($id);
         if ($data['file_upload']) {
             unlink('uploads/' . $data['file_upload']);
         }
 
-        $this->preservation->delete($id);
+        $this->culling->delete($id);
 
         session()->setFlashdata('message', ['success', 'Data berhasil dihapus']);
-        return redirect()->to('/admin/preservation');
+        return redirect()->to('/admin/culling');
     }
 
     public function scan($id)
     {
-        $preservation = $this->preservation->find($id);
+        $culling = $this->culling->find($id);
 
         $this->breadcrumb->add('Dashboard', 'admin/dashboard');
-        $this->breadcrumb->add('Pelestarian', 'admin/preservation');
-        $this->breadcrumb->add('Alih Media (' . (string) $preservation['norm'] . ')', 'admin/preservation/scan/' . $id);
+        $this->breadcrumb->add('Pemusnahan', 'admin/culling');
+        $this->breadcrumb->add('Alih Media (' . (string) $culling['norm'] . ')', 'admin/culling/scan/' . $id);
 
-        return view('admin/preservation/scan', [
-            'preservation' => $preservation,
+        return view('admin/culling/scan', [
+            'culling' => $culling,
             'breadcrumbs' => $this->breadcrumb->render()
         ]);
     }
@@ -122,12 +122,12 @@ class Preservation extends BaseController
         $filename = date('YmdHis') . '_' . $file->getRandomName();
         $file->move('uploads', $filename);
 
-        $this->preservation->update($id, [
+        $this->culling->update($id, [
             'scan_status' => 1,
             'file_upload' => $filename
         ]);
 
         session()->setFlashdata('message', ['success', 'Data berhasil disimpan']);
-        return redirect()->to('/admin/preservation');
+        return redirect()->to('/admin/culling');
     }
 }

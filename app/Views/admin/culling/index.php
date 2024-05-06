@@ -9,7 +9,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         <?php endif; ?>
-        <a href="/admin/preservation/create" class="btn btn-success mb-3">Tambah Pelestarian</a>
+        <a href="/admin/culling/create" class="btn btn-success mb-3">Tambah Pemusnahan</a>
         <table id="datatablesSimple">
             <thead>
                 <tr>
@@ -18,23 +18,23 @@
                     <th>Diagnosa</th>
                     <th>Keterangan</th>
                     <th>Status Scan</th>
-                    <th>Tanggal Pelestarian</th>
+                    <th>Tanggal Pemusnahan</th>
                     <th>Hasil Upload</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($preservations as $preservation) : ?>
+                <?php foreach ($cullings as $culling) : ?>
                     <tr>
-                        <td><?= $preservation['norm'] ?></td>
-                        <td><?= $preservation['name'] ?></td>
-                        <td><?= $preservation['diagnose'] ?></td>
-                        <td><?= $preservation['description'] ?></td>
-                        <td><?= $preservation['scan_status'] ? 'Sudah di-scan' : 'Belum di-scan' ?></td>
-                        <td><?= $preservation['preservation_date'] ?></td>
+                        <td><?= $culling['norm'] ?></td>
+                        <td><?= $culling['name'] ?></td>
+                        <td><?= $culling['diagnose'] ?></td>
+                        <td><?= $culling['description'] ?></td>
+                        <td><?= $culling['scan_status'] ? 'Sudah di-scan' : 'Belum di-scan' ?></td>
+                        <td><?= $culling['culling_date'] ?></td>
                         <td>
-                            <?php if ($preservation['file_upload']) : ?>
-                                <a href="/uploads/<?= $preservation['file_upload'] ?>" target="_blank" class="btn btn-warning btn-sm">
+                            <?php if ($culling['file_upload']) : ?>
+                                <a href="/uploads/<?= $culling['file_upload'] ?>" target="_blank" class="btn btn-warning btn-sm">
                                     Lihat berkas
                                 </a>
                             <?php else : ?>
@@ -42,15 +42,15 @@
                             <?php endif; ?>
                         </td>
                         <td>
-                            <a href="/admin/preservation/edit/<?= $preservation['id'] ?>" class="btn btn-warning btn-sm">
+                            <a href="/admin/culling/edit/<?= $culling['id'] ?>" class="btn btn-warning btn-sm">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <a href="/admin/preservation/delete/<?= $preservation['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                            <a href="/admin/culling/delete/<?= $culling['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
                                 <i class="fas fa-trash"></i>
                             </a>
                             <?php
-                            if ($preservation['scan_status'] == 0) : ?>
-                                <a href="/admin/preservation/scan/<?= $preservation['id'] ?>" class="btn btn-primary btn-sm">
+                            if ($culling['scan_status'] == 0) : ?>
+                                <a href="/admin/culling/scan/<?= $culling['id'] ?>" class="btn btn-primary btn-sm">
                                     Scan dan Upload
                                 </a>
                             <?php endif; ?>

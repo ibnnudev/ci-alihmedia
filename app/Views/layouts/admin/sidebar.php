@@ -29,9 +29,17 @@
                     <div class="sb-nav-link-icon <?= (current_url(true)->getSegment(2) == 'retention') ? 'text-white' : '' ?>"><i class="fas fa-archive"></i></div>
                     Retensi
                 </a>
-                <a class="nav-link <?= (current_url(true)->getSegment(2) == 'preservation') ? 'text-white active' : 'text-light' ?>" href="/admin/preservation">
-                    <div class="sb-nav-link-icon <?= (current_url(true)->getSegment(2) == 'preservation') ? 'text-white' : '' ?>"><i class="fas fa-archive"></i></div>
+                <a class="nav-link <?= (current_url(true)->getSegment(2) == 'preservation' && current_url(true)->getSegment(3) != 'scan') ? 'text-white active' : 'text-light' ?>" href="/admin/preservation">
+                    <div class="sb-nav-link-icon <?= (current_url(true)->getSegment(2) == 'preservation'  && current_url(true)->getSegment(3) != 'scan') ? 'text-white' : '' ?>"><i class="fas fa-archive"></i></div>
                     Pelestarian
+                </a>
+                <a class="nav-link <?= (current_url(true)->getSegment(2) == 'culling' && current_url(true)->getSegment(3) != 'scan') ? 'text-white active' : 'text-light' ?>" href="/admin/culling">
+                    <div class="sb-nav-link-icon <?= (current_url(true)->getSegment(2) == 'culling'  && current_url(true)->getSegment(3) != 'scan') ? 'text-white' : '' ?>"><i class="fas fa-archive"></i></div>
+                    Pemusnahan
+                </a>
+                <a class="nav-link disabled <?= (current_url(true)->getSegment(3) == 'scan') ? 'text-white active' : 'text-light' ?>" href="/admin/preservation/scan">
+                    <div class="sb-nav-link-icon <?= (current_url(true)->getSegment(2) == 'scan') ? 'text-white' : '' ?>"><i class="fas fa-archive"></i></div>
+                    Alih Media
                 </a>
             </div>
             <!-- <div class="sb-sidenav-footer bg-success">

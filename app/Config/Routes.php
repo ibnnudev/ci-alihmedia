@@ -67,5 +67,18 @@ $routes->group('admin', ['filter' => 'admin'], function (RouteCollection $routes
         $routes->post('update/(:num)', 'Admin\Preservation::update/$1');
         $routes->get('delete/(:num)', 'Admin\Preservation::delete/$1');
         $routes->get('scan/(:num)', 'Admin\Preservation::scan/$1');
+        $routes->post('scan/store', 'Admin\Preservation::scanStore');
+    });
+
+    // Culling
+    $routes->group('culling', function (RouteCollection $routes) {
+        $routes->get('/', 'Admin\Culling::index');
+        $routes->get('create', 'Admin\Culling::create');
+        $routes->post('store', 'Admin\Culling::store');
+        $routes->get('edit/(:num)', 'Admin\Culling::edit/$1');
+        $routes->post('update/(:num)', 'Admin\Culling::update/$1');
+        $routes->get('delete/(:num)', 'Admin\Culling::delete/$1');
+        $routes->get('scan/(:num)', 'Admin\Culling::scan/$1');
+        $routes->post('scan/store', 'Admin\Culling::scanStore');
     });
 });

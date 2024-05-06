@@ -14,8 +14,8 @@
             </div>
         <?php endif; ?>
         <a href="/admin/user" class="btn btn-primary mb-3">Kembali</a>
-        <form action="<?= base_url('/admin/preservation/scan/store') ?>" method="post" class="row" enctype="multipart/form-data">
-            <input type="hidden" name="id" value="<?= $preservation['id'] ?>">
+        <form action="<?= base_url('/admin/culling/scan/store') ?>" method="post" class="row" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="<?= $culling['id'] ?>">
             <div class="col-md-7">
                 <p class="fw-bold ">Belum punya melakukan scan? Silahkan unggah dokumen!</p>
                 <div class="form-group">
