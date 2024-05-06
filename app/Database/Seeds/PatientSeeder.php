@@ -12,21 +12,32 @@ class PatientSeeder extends Seeder
         $patient = new Patient();
         $patients = [
             [
-                'norm' => $patient->generateNorm(), // '010120-0000'
+                'norm' => '0001',
+                'nik' => '1234567890123456',
                 'name' => 'John Doe',
                 'address' => 'Jl. Lorem Ipsum Dolor Sit Amet',
+                'gender' => 'L',
                 'birth_place' => 'Jakarta',
-                'birth_date' => '1990-01-01',
-                'gender' => 'Man'
+                'birth_date' => '2000-01-01',
+                'age' => 21,
+                'religion' => 'Islam',
+                'district' => 'Kebayoran Lama',
+                'village' => 'Pondok Pinang',
+                'regency' => 'Jakarta Selatan'
             ],
             [
-                'norm' => $patient->generateNorm(), // '010120-0001'
+                'norm' => '0002',
+                'nik' => '1234567890123457',
                 'name' => 'Jane Doe',
                 'address' => 'Jl. Lorem Ipsum Dolor Sit Amet',
                 'birth_place' => 'Jakarta',
-                'birth_date' => '1990-01-01',
-                'gender' => 'Woman'
-            ]
+                'birth_date' => '2000-01-02',
+                'age' => 21,
+                'religion' => 'Islam',
+                'district' => 'Kebayoran Lama',
+                'village' => 'Pondok Pinang',
+                'regency' => 'Jakarta Selatan'
+            ],
         ];
 
         foreach ($patients as $data) {

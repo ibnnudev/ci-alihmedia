@@ -4,30 +4,30 @@ namespace App\Database\Seeds;
 
 use CodeIgniter\Database\Seeder;
 
-class Admin extends Seeder
+class UserSeeder extends Seeder
 {
     public function run()
     {
         $admin = [
+            'name' => 'Admin',
+            'email' => 'admin@mail.com',
             'username' => 'admin',
             'password' => password_hash('admin', PASSWORD_DEFAULT),
-            'name' => 'Administrator',
+            'position' => 'Admin',
             'level' => 'admin',
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
         ];
 
-        $this->db->table('admins')->insert($admin);
+        $this->db->table('users')->insert($admin);
 
         $user = [
+            'name' => 'User',
+            'email' => 'user@mail.com',
             'username' => 'user',
             'password' => password_hash('user', PASSWORD_DEFAULT),
-            'name' => 'User',
+            'position' => 'User',
             'level' => 'user',
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
         ];
 
-        $this->db->table('admins')->insert($user);
+        $this->db->table('users')->insert($user);
     }
 }

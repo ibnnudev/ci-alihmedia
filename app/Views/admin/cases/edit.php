@@ -32,7 +32,7 @@
                 </div>
             </div>
             <div class="jusfify-content-center align-items-center text-center mt-4">
-                <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                <button type="submit" class="btn btn-primary">Simpan </button>
                 <button type="button" class="btn btn-light" onclick="resetForm()">Reset</button>
             </div>
         </form>

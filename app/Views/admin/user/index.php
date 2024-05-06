@@ -9,34 +9,35 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         <?php endif; ?>
-        <a href="/admin/patient/create" class="btn btn-success mb-3">Tambah Pasien</a>
+        <a href="/admin/user/create" class="btn btn-success mb-3">Tambah Pengguna</a>
         <table id="datatablesSimple">
             <thead>
                 <tr>
-                    <th>No. RM</th>
-                    <th>NIK</th>
+                    <th>No</th>
+                    <th>Username</th>
                     <th>Nama</th>
-                    <th>Agama</th>
-                    <th>Umur</th>
-                    <th>JK</th>
+                    <th>Email</th>
+                    <th>Jabatan</th>
+                    <th>Role</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($patients as $patient) : ?>
+                <?php $no = 1; ?>
+                <?php foreach ($users as $user) : ?>
                     <tr>
-                        <td><?= $patient['norm'] ?></td>
-                        <td><?= $patient['nik'] ?></td>
-                        <td><?= $patient['name'] ?></td>
-                        <td><?= $patient['religion'] ?></td>
-                        <td><?= $patient['age'] ?> tahun</td>
-                        <td><?= $patient['gender'] ?></td>
+                        <td><?= $no++ ?></td>
+                        <td><?= $user['username'] ?></td>
+                        <td><?= $user['name'] ?></td>
+                        <td><?= $user['email'] ?></td>
+                        <td><?= $user['position'] ?></td>
+                        <td><?= $user['level'] == 'admin' ? '<span class="badge bg-primary">Admin</span>' : '<span class="badge bg-success">User</span>' ?></td>
                         <td>
-                            <a href="/admin/patient/show/<?= $patient['norm'] ?>" class="btn btn-info btn-sm">
+                            <a href="/admin/user/show/<?= $user['id'] ?>" class="btn btn-info btn-sm">
                                 <i class="fas fa-eye"></i></a>
-                            <a href="/admin/patient/edit/<?= $patient['norm'] ?>" class="btn btn-warning btn-sm">
+                            <a href="/admin/user/edit/<?= $user['id'] ?>" class="btn btn-warning btn-sm">
                                 <i class="fas fa-edit"></i></a>
-                            <a href="/admin/patient/delete/<?= $patient['norm'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                            <a href="/admin/user/delete/<?= $user['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
                                 <i class="fas fa-trash"></i>
                             </a>
                         </td>

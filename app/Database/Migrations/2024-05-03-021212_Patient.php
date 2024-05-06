@@ -10,29 +10,53 @@ class Patient extends Migration
     {
         $this->forge->addField([
             'norm' => [
-                'type' => 'VARCHAR',
+                'type'       => 'VARCHAR',
                 'constraint' => 255,
-                'unique' => true
+                'unique'     => true
+            ],
+            'nik' => [
+                'type'       => 'VARCHAR',
+                'constraint' => 255,
             ],
             'name' => [
-                'type' => 'VARCHAR',
+                'type'       => 'VARCHAR',
                 'constraint' => 100
             ],
             'address' => [
-                'type' => 'VARCHAR',
+                'type'       => 'VARCHAR',
                 'constraint' => 255,
-                'null' => true
+                'null'       => true
             ],
             'gender' => [
-                'type' => 'VARCHAR',
+                'type'       => 'VARCHAR',
                 'constraint' => 10
             ],
             'birth_place' => [
-                'type' => 'VARCHAR',
+                'type'       => 'VARCHAR',
                 'constraint' => 100
             ],
             'birth_date' => [
                 'type' => 'DATE'
+            ],
+            'age' => [
+                'type'       => 'INT',
+                'constraint' => 3
+            ],
+            'religion' => [
+                'type'       => 'VARCHAR',
+                'constraint' => 50
+            ],
+            'district' => [
+                'type'       => 'VARCHAR',
+                'constraint' => 100
+            ],
+            'village' => [
+                'type'       => 'VARCHAR',
+                'constraint' => 100
+            ],
+            'regency' => [
+                'type'       => 'VARCHAR',
+                'constraint' => 100
             ],
         ]);
 

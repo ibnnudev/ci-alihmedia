@@ -9,27 +9,27 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         <?php endif; ?>
-        <a href="/admin/cases/create" class="btn btn-success mb-3">Tambah Kasus</a>
+        <a href="/admin/retention-schedule/create" class="btn btn-success mb-3">Tambah Jadwal</a>
         <table id="datatablesSimple">
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Kasus</th>
-                    <th>Masa Aktif</th>
-                    <th>Masa Inaktif</th>
+                    <th>Tanggal</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($cases as $case) : ?>
+                <?php $no = 1; ?>
+                <?php foreach ($retentions as $data) : ?>
                     <tr>
-                        <td><?= $case['id'] ?></td>
-                        <td><?= $case['name'] ?></td>
-                        <td><?= $case['active_ri'] . ' tahun' ?></td>
-                        <td><?= $case['inactive_ri'] . ' tahun' ?></td>
+                        <td><?= $no++ ?></td>
+                        <td><?= date('d/m/Y', strtotime($data['retention_date'])) ?></td>
                         <td>
-                            <a href="/admin/cases/edit/<?= $case['id'] ?>" class="btn btn-warning btn-sm">Edit</a>
-                            <a href="/admin/cases/delete/<?= $case['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</a>
+                            <a href="/admin/retention-schedule/edit/<?= $data['id'] ?>" class="btn btn-warning btn-sm">
+                                <i class="fas fa-edit"></i></a>
+                            <a href="/admin/retention-schedule/delete/<?= $data['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                                <i class="fas fa-trash"></i>
+                            </a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

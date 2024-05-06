@@ -31,6 +31,19 @@ class Patient extends BaseController
         ]);
     }
 
+    public function show($norm)
+    {
+        $data = $this->patient->where('norm', $norm)->first();
+        $this->breadcrumbs->add('Dashboard', 'admin/dashboard');
+        $this->breadcrumbs->add('Pasien', 'admin/patient');
+        $this->breadcrumbs->add('Detail Pasien', 'admin/patient/show/' . $norm);
+
+        return view('admin/patient/show', [
+            'data' => $data,
+            'breadcrumbs' => $this->breadcrumbs->render()
+        ]);
+    }
+
     public function create()
     {
         $this->breadcrumbs->add('Dashboard', 'admin/dashboard');
@@ -49,6 +62,7 @@ class Patient extends BaseController
         try {
             $data = $this->request->getPost();
             $data['norm'] = $this->patient->generateNorm();
+            $data['age'] = date('Y') - explode('-', $data['birth_date'])[0];
             $this->patient->insert($data);
             session()->setFlashdata('success', 'Data pasien berhasil ditambahkan');
             return redirect()->to('/admin/patient');
@@ -75,6 +89,7 @@ class Patient extends BaseController
     {
         try {
             $data = $this->request->getPost();
+            $data['age'] = date('Y') - explode('-', $data['birth_date'])[0];
             $this->patient->where('norm', $norm)->set($data)->update();
             session()->setFlashdata('message', ['success', 'Data pasien berhasil diperbarui']);
             return redirect()->to('/admin/patient');

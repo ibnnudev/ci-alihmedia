@@ -2,8 +2,8 @@
 
 namespace App\Controllers;
 
-use App\Models\Admin;
 use App\Models\Log;
+use App\Models\User;
 
 class Auth extends BaseController
 {
@@ -14,7 +14,7 @@ class Auth extends BaseController
 
     public function login()
     {
-        $admin = new Admin();
+        $admin = new User();
 
         $username = $this->request->getPost('username');
         $password = $this->request->getPost('password');
@@ -25,9 +25,9 @@ class Auth extends BaseController
             $log = new Log();
             try {
                 $log->save([
-                    'admin_id' => $cek['id'],
+                    'user_id' => $cek['id'],
                     'activity' => 'Login',
-                    'description' => 'Admin login',
+                    'description' => $cek['name'] . '-' . $cek['level'] . ' logged in',
                     'created_at' => date('Y-m-d H:i:s')
                 ]);
             } catch (\Throwable $th) {

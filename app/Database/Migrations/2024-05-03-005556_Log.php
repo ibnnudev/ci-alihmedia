@@ -15,7 +15,7 @@ class Log extends Migration
                 'unsigned' => true,
                 'auto_increment' => true
             ],
-            'admin_id' => [
+            'user_id' => [
                 'type' => 'INT',
                 'constraint' => 5,
                 'unsigned' => true
@@ -35,7 +35,6 @@ class Log extends Migration
         ]);
 
         $this->forge->addKey('id', true);
-        $this->forge->addForeignKey('admin_id', 'admins', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('logs');
     }
 
