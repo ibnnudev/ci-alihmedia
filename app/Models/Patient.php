@@ -24,7 +24,9 @@ class Patient extends Model
         'religion',
         'district',
         'village',
-        'regency'
+        'regency',
+        'diagnose',
+        'created_at',
     ];
 
     protected bool $allowEmptyInserts = false;
@@ -59,11 +61,14 @@ class Patient extends Model
 
     public function generateNorm(): string
     {
-        // Generate a unique ID: 0000
-        $lastId = $this->select('norm')->orderBy('norm', 'DESC')->first();
-        $lastId = $lastId ? $lastId['norm'] : 0;
-        $lastId++;
-
-        return str_pad($lastId, 4, '0', STR_PAD_LEFT);
+        // Generate a unique ID: RM-0001
+        $last = $this->select('norm')->orderBy('norm', 'DESC')->first();
+        if ($last) {
+            $lastId = explode('-', $last['norm']);
+            $newId = $lastId[1] + 1;
+            return 'RM-' . str_pad($newId, 4, '0', STR_PAD_LEFT);
+        } else {
+            return 'RM-0001';
+        }
     }
 }

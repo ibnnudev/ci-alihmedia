@@ -12,6 +12,10 @@
                         <input type="text" class="form-control" required id="norm" disabled value="<?= $data['norm'] ?>">
                     </div>
                     <div class="mb-3">
+                        <label for="diagnose" class="form-label">Diagnosa</label>
+                        <input type="text" class="form-control" required name="diagnose" id="diagnose" required value="<?= $data['diagnose'] ?>">
+                    </div>
+                    <div class="mb-3">
                         <label for="nik" class="form-label">NIK</label>
                         <input type="number" class="form-control" required id="nik" name="nik" value="<?= $data['nik'] ?>">
                     </div>
@@ -78,6 +82,7 @@
 <script>
     function resetForm() {
         // reset form
+        document.getElementById('diagnose').value = '';
         document.getElementById('nik').value = '';
         document.getElementById('birth_place').value = '';
         document.getElementById('address').value = '';

@@ -30,6 +30,7 @@ $routes->group('admin', ['filter' => 'admin'], function (RouteCollection $routes
         $routes->get('edit/(:num)', 'Admin\Patient::edit/$1');
         $routes->post('update/(:num)', 'Admin\Patient::update/$1');
         $routes->get('delete/(:num)', 'Admin\Patient::delete/$1');
+        $routes->post('import', 'Admin\Patient::import');
     });
 
     // Cases

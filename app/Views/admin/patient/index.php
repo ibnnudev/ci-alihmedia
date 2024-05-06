@@ -9,7 +9,15 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         <?php endif; ?>
-        <a href="/admin/patient/create" class="btn btn-success mb-3">Tambah Pasien</a>
+        <div class="d-flex justify-content-between">
+            <a href="/admin/patient/create" class="btn btn-success mb-3">Tambah Pasien</a>
+            <form action="<?= base_url('/admin/patient/import') ?>" method="POST" enctype="multipart/form-data">
+                <div class="input-group mb-3">
+                    <input type="file" class="form-control" name="file" required>
+                    <button class="btn btn-primary" type="submit">Import</button>
+                </div>
+            </form>
+        </div>
         <table id="datatablesSimple">
             <thead>
                 <tr>
