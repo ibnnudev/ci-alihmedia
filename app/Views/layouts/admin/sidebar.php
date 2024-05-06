@@ -25,6 +25,14 @@
                 </a>
 
                 <div class="sb-sidenav-menu-heading text-light">Transaksi Retensi</div>
+                <a class="nav-link <?= (current_url(true)->getSegment(2) == 'retention') ? 'text-white active' : 'text-light' ?>" href="/admin/retention">
+                    <div class="sb-nav-link-icon <?= (current_url(true)->getSegment(2) == 'retention') ? 'text-white' : '' ?>"><i class="fas fa-archive"></i></div>
+                    Retensi
+                </a>
+                <a class="nav-link <?= (current_url(true)->getSegment(2) == 'preservation') ? 'text-white active' : 'text-light' ?>" href="/admin/preservation">
+                    <div class="sb-nav-link-icon <?= (current_url(true)->getSegment(2) == 'preservation') ? 'text-white' : '' ?>"><i class="fas fa-archive"></i></div>
+                    Pelestarian
+                </a>
             </div>
             <!-- <div class="sb-sidenav-footer bg-success">
                 <div class="small">Logged in as:</div>

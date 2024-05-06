@@ -52,4 +52,20 @@ $routes->group('admin', ['filter' => 'admin'], function (RouteCollection $routes
         $routes->post('update/(:num)', 'Admin\RetentionSchedule::update/$1');
         $routes->get('delete/(:num)', 'Admin\RetentionSchedule::delete/$1');
     });
+
+    // Retention
+    $routes->group('retention', function (RouteCollection $routes) {
+        $routes->get('/', 'Admin\Retention::index');
+    });
+
+    // Preservation
+    $routes->group('preservation', function (RouteCollection $routes) {
+        $routes->get('/', 'Admin\Preservation::index');
+        $routes->get('create', 'Admin\Preservation::create');
+        $routes->post('store', 'Admin\Preservation::store');
+        $routes->get('edit/(:num)', 'Admin\Preservation::edit/$1');
+        $routes->post('update/(:num)', 'Admin\Preservation::update/$1');
+        $routes->get('delete/(:num)', 'Admin\Preservation::delete/$1');
+        $routes->get('scan/(:num)', 'Admin\Preservation::scan/$1');
+    });
 });

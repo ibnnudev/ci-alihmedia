@@ -11,10 +11,6 @@
                     <input type="text" class="form-control" required disabled id="norm" value="<?= $data['norm'] ?>">
                 </div>
                 <div class="mb-3">
-                    <label for="diagnose" class="form-label">Diagnosa</label>
-                    <input type="text" class="form-control" required disabled id="diagnose" name="diagnose" value="<?= $data['diagnose'] ?>">
-                </div>
-                <div class="mb-3">
                     <label for="nik" class="form-label">NIK</label>
                     <input type="number" class="form-control" required disabled id="nik" name="nik" value="<?= $data['nik'] ?>">
                 </div>

@@ -3,10 +3,11 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
+use Tatter\Relations\Traits\ModelTrait;
 
-class Patient extends Model
+class Preservation extends Model
 {
-    protected $table            = 'patients';
+    protected $table            = 'preservation';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
@@ -14,19 +15,11 @@ class Patient extends Model
     protected $protectFields    = true;
     protected $allowedFields    = [
         'norm',
-        'nik',
-        'name',
-        'address',
-        'gender',
-        'birth_place',
-        'birth_date',
-        'age',
-        'religion',
-        'district',
-        'village',
-        'regency',
         'diagnose',
-        'created_at',
+        'preservation_date',
+        'file_upload',
+        'scan_status',
+        'description',
     ];
 
     protected bool $allowEmptyInserts = false;
@@ -59,16 +52,10 @@ class Patient extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    public function generateNorm(): string
+    public function getAll()
     {
-        // Generate a unique ID: RM-0001
-        $last = $this->select('norm')->orderBy('norm', 'DESC')->first();
-        if ($last) {
-            $lastId = explode('-', $last['norm']);
-            $newId  = $lastId[1] + 1;
-            return 'RM-' . str_pad($newId, 4, '0', STR_PAD_LEFT);
-        } else {
-            return 'RM-0001';
-        }
+        return $this->select('preservation.*, patients.name, patients.diagnose, patients.created_at')
+            ->join('patients', 'patients.norm = preservation.norm')
+            ->findAll();
     }
 }

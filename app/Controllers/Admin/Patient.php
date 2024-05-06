@@ -146,7 +146,7 @@ class Patient extends BaseController
                 'village'     => $row[9],
                 'regency'     => $row[10],
                 'diagnose'    => $row[11],
-                'created_at'  => date('Y-m-d H:i:s')
+                'created_at'  => $row[12]
             ]);
         }
 
